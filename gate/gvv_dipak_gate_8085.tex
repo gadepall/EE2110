@@ -1,0 +1,935 @@
+\documentclass[journal,12pt,twocolumn]{IEEEtran}
+%
+\usepackage{setspace}
+\usepackage{gensymb}
+\usepackage{xcolor}
+\usepackage{caption}
+%\usepackage{subcaption}
+%\doublespacing
+\singlespacing
+
+%\usepackage{graphicx}
+%\usepackage{amssymb}
+%\usepackage{relsize}
+\usepackage[cmex10]{amsmath}
+\usepackage{mathtools}
+%\usepackage{amsthm}
+%\interdisplaylinepenalty=2500
+%\savesymbol{iint}
+%\usepackage{txfonts}
+%\restoresymbol{TXF}{iint}
+%\usepackage{wasysym}
+\usepackage{amsthm}
+\usepackage{mathrsfs}
+\usepackage{txfonts}
+\usepackage{stfloats}
+\usepackage{cite}
+\usepackage{cases}
+\usepackage{subfig}
+%\usepackage{xtab}
+\usepackage{longtable}
+\usepackage{multirow}
+%\usepackage{algorithm}
+%\usepackage{algpseudocode}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{iithtlc}
+%\usepackage[framemethod=tikz]{mdframed}
+\usepackage{listings}
+\usepackage{listings}
+    \usepackage[latin1]{inputenc}                                 %%
+    \usepackage{color}                                            %%
+    \usepackage{array}                                            %%
+    \usepackage{longtable}                                        %%
+    \usepackage{calc}                                             %%
+    \usepackage{multirow}                                         %%
+    \usepackage{hhline}                                           %%
+    \usepackage{ifthen}                                           %%
+  %optionally (for landscape tables embedded in another document): %%
+    \usepackage{lscape}     
+\usepackage{tikz}
+
+
+%\usepackage{stmaryrd}
+
+
+%\usepackage{wasysym}
+%\newcounter{MYtempeqncnt}
+\DeclareMathOperator*{\Res}{Res}
+%\renewcommand{\baselinestretch}{2}
+\renewcommand\thesection{\arabic{section}}
+\renewcommand\thesubsection{\thesection.\arabic{subsection}}
+\renewcommand\thesubsubsection{\thesubsection.\arabic{subsubsection}}
+
+\renewcommand\thesectiondis{\arabic{section}}
+\renewcommand\thesubsectiondis{\thesectiondis.\arabic{subsection}}
+\renewcommand\thesubsubsectiondis{\thesubsectiondis.\arabic{subsubsection}}
+
+% correct bad hyphenation here
+\hyphenation{op-tical net-works semi-conduc-tor}
+
+%\lstset{
+%language=C,
+%frame=single, 
+%breaklines=true
+%}
+
+%\lstset{
+	%%basicstyle=\small\ttfamily\bfseries,
+	%%numberstyle=\small\ttfamily,
+	%language=Octave,
+	%backgroundcolor=\color{white},
+	%%frame=single,
+	%%keywordstyle=\bfseries,
+	%%breaklines=true,
+	%%showstringspaces=false,
+	%%xleftmargin=-10mm,
+	%%aboveskip=-1mm,
+	%%belowskip=0mm
+%}
+
+%\surroundwithmdframed[width=\columnwidth]{lstlisting}
+\def\inputGnumericTable{}                                 %%
+
+\lstset{
+language=C,
+frame=single, 
+breaklines=true
+}
+%\lstset{
+%language=assembly,
+%frame=single, 
+%breaklines=true
+%}
+ 
+
+\begin{document}
+%
+
+\theoremstyle{definition}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{problem}{Problem}
+\newtheorem{proposition}{Proposition}[section]
+\newtheorem{lemma}{Lemma}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{example}{Example}[section]
+\newtheorem{definition}{Definition}[section]
+%\newtheorem{algorithm}{Algorithm}[section]
+%\newtheorem{cor}{Corollary}
+\newcommand{\BEQA}{\begin{eqnarray}}
+\newcommand{\EEQA}{\end{eqnarray}}
+\newcommand{\define}{\stackrel{\triangle}{=}}
+
+\bibliographystyle{IEEEtran}
+%\bibliographystyle{ieeetr}
+
+\providecommand{\nCr}[2]{\,^{#1}C_{#2}} % nCr
+\providecommand{\nPr}[2]{\,^{#1}P_{#2}} % nPr
+\providecommand{\mbf}{\mathbf}
+\providecommand{\pr}[1]{\ensuremath{\Pr\left(#1\right)}}
+\providecommand{\qfunc}[1]{\ensuremath{Q\left(#1\right)}}
+\providecommand{\sbrak}[1]{\ensuremath{{}\left[#1\right]}}
+\providecommand{\lsbrak}[1]{\ensuremath{{}\left[#1\right.}}
+\providecommand{\rsbrak}[1]{\ensuremath{{}\left.#1\right]}}
+\providecommand{\brak}[1]{\ensuremath{\left(#1\right)}}
+\providecommand{\lbrak}[1]{\ensuremath{\left(#1\right.}}
+\providecommand{\rbrak}[1]{\ensuremath{\left.#1\right)}}
+\providecommand{\cbrak}[1]{\ensuremath{\left\{#1\right\}}}
+\providecommand{\lcbrak}[1]{\ensuremath{\left\{#1\right.}}
+\providecommand{\rcbrak}[1]{\ensuremath{\left.#1\right\}}}
+\theoremstyle{remark}
+\newtheorem{rem}{Remark}
+\newcommand{\sgn}{\mathop{\mathrm{sgn}}}
+\providecommand{\abs}[1]{\left\vert#1\right\vert}
+\providecommand{\res}[1]{\Res\displaylimits_{#1}} 
+\providecommand{\norm}[1]{\lVert#1\rVert}
+\providecommand{\mtx}[1]{\mathbf{#1}}
+\providecommand{\mean}[1]{E\left[ #1 \right]}
+\providecommand{\fourier}{\overset{\mathcal{F}}{ \rightleftharpoons}}
+%\providecommand{\hilbert}{\overset{\mathcal{H}}{ \rightleftharpoons}}
+\providecommand{\system}{\overset{\mathcal{H}}{ \longleftrightarrow}}
+	%\newcommand{\solution}[2]{\textbf{Solution:}{#1}}
+\newcommand{\solution}{\noindent \textbf{Solution: }}
+\providecommand{\dec}[2]{\ensuremath{\overset{#1}{\underset{#2}{\gtrless}}}}
+%\numberwithin{equation}{subsection}
+\numberwithin{equation}{problem}
+%\numberwithin{problem}{subsection}
+%\numberwithin{definition}{subsection}
+\makeatletter
+\@addtoreset{figure}{problem}
+\makeatother
+
+\let\StandardTheFigure\thefigure
+%\renewcommand{\thefigure}{\theproblem.\arabic{figure}}
+\renewcommand{\thefigure}{\theproblem}
+
+
+%\numberwithin{figure}{subsection}
+
+%\numberwithin{equation}{subsection}
+%\numberwithin{equation}{section}
+%%\numberwithin{equation}{problem}
+%%\numberwithin{problem}{subsection}
+\numberwithin{problem}{section}
+%%\numberwithin{definition}{subsection}
+%\makeatletter
+%\@addtoreset{figure}{problem}
+%\makeatother
+\makeatletter
+\@addtoreset{table}{problem}
+\makeatother
+
+\let\StandardTheFigure\thefigure
+\let\StandardTheTable\thetable
+%%\renewcommand{\thefigure}{\theproblem.\arabic{figure}}
+%\renewcommand{\thefigure}{\theproblem}
+\renewcommand{\thetable}{\theproblem}
+%%\numberwithin{figure}{section}
+
+%%\numberwithin{figure}{subsection}
+
+
+
+\def\putbox#1#2#3{\makebox[0in][l]{\makebox[#1][l]{}\raisebox{\baselineskip}[0in][0in]{\raisebox{#2}[0in][0in]{#3}}}}
+     \def\rightbox#1{\makebox[0in][r]{#1}}
+     \def\centbox#1{\makebox[0in]{#1}}
+     \def\topbox#1{\raisebox{-\baselineskip}[0in][0in]{#1}}
+     \def\midbox#1{\raisebox{-0.5\baselineskip}[0in][0in]{#1}}
+
+\vspace{3cm}
+
+\title{ 
+	\logo{
+GATE Exercises on Microprocessors
+	}
+}
+
+
+
+% paper title
+% can use linebreaks \\ within to get better formatting as desired
+%\title{Matrix Analysis through Octave}
+%
+%
+% author names and IEEE memberships
+% note positions of commas and nonbreaking spaces ( ~ ) LaTeX will not break
+% a structure at a ~ so this keeps an author's name from being broken across
+% two lines.
+% use \thanks{} to gain access to the first footnote area
+% a separate \thanks must be used for each paragraph as LaTeX2e's \thanks
+% was not built to handle multiple paragraphs
+%
+
+%\author{G V V Sharma$^{*}$% <-this % stops a space
+%\thanks{*The author is with the Department
+%of Electrical Engineering, Indian Institute of Technology, Hyderabad
+%502285 India e-mail:  gadepall@iith.ac.in.}% <-this % stops a space
+%%\thanks{J. Doe and J. Doe are with Anonymous University.}% <-this % stops a space
+%%\thanks{Manuscript received April 19, 2005; revised January 11, 2007.}}
+%}
+% note the % following the last \IEEEmembership and also \thanks - 
+% these prevent an unwanted space from occurring between the last author name
+% and the end of the author line. i.e., if you had this:
+% 
+% \author{....lastname \thanks{...} \thanks{...} }
+%                     ^------------^------------^----Do not want these spaces!
+%
+% a space would be appended to the last name and could cause every name on that
+% line to be shifted left slightly. This is one of those "LaTeX things". For
+% instance, "\textbf{A} \textbf{B}" will typeset as "A B" not "AB". To get
+% "AB" then you have to do: "\textbf{A}\textbf{B}"
+% \thanks is no different in this regard, so shield the last } of each \thanks
+% that ends a line with a % and do not let a space in before the next \thanks.
+% Spaces after \IEEEmembership other than the last one are OK (and needed) as
+% you are supposed to have spaces between the names. For what it is worth,
+% this is a minor point as most people would not even notice if the said evil
+% space somehow managed to creep in.
+
+
+
+% The paper headers
+%\markboth{Journal of \LaTeX\ Class Files,~Vol.~6, No.~1, January~2007}%
+%{Shell \MakeLowercase{\textit{et al.}}: Bare Demo of IEEEtran.cls for Journals}
+% The only time the second header will appear is for the odd numbered pages
+% after the title page when using the twoside option.
+% 
+% *** Note that you probably will NOT want to include the author's ***
+% *** name in the headers of peer review papers.                   ***
+% You can use \ifCLASSOPTIONpeerreview for conditional compilation here if
+% you desire.
+
+
+
+
+% If you want to put a publisher's ID mark on the page you can do it like
+% this:
+%\IEEEpubid{0000--0000/00\$00.00~\copyright~2007 IEEE}
+% Remember, if you use this you must call \IEEEpubidadjcol in the second
+% column for its text to clear the IEEEpubid mark.
+
+
+
+% make the title area
+\maketitle
+
+%\tableofcontents
+
+\bigskip
+
+\begin{abstract}
+%\boldmath
+This problem set has questions taken from GATE papers over the last twenty years.  Teachers can use the problem set for courses tutorials. 
+ 
+\end{abstract}
+\begin{enumerate}
+\item The clock frequency of an 8085 microprocessor is 5 MHz.If time required to execute an instruction is 1.4 $\mu$ s,then number of T states needed for executing the instruction is 
+\begin{verbatim}
+MVI A,33H      
+MVI B,78H        
+ADD B
+CMA
+ANI 32H
+\end{verbatim}
+The Accumulator value immediately after the execution of the fifth instruction is
+      \begin{enumerate}
+      \item 1
+      \item 6
+      \item 7
+      \item 8
+      \end{enumerate}
+ 
+\item In an 8085 system, a PUSH operation requires more clock cycles than a POP operation. Which one
+of the following options is the correct reason for this?
+  
+      \begin{enumerate}
+      \item  For POP, the data transceivers remain in the same direction as for instruction fetch (memory to processor), whereas for PUSH their direction has to be reversed. 
+      \item Memory write operations are slower than memory read operations in an 8085 based system.
+      \item The stack pointer needs to be pre-decremented before writing registers in a PUSH, whereas a
+POP operation uses the address already in the stack pointer.
+      \item Order of registers has to be interchanged for a PUSH operation, whereas POP uses their natural order.
+      \end{enumerate}
+\item In an 8085 microprocessor, the shift registers which store the result of an addition and the overflow bit are, respectively
+      \begin{enumerate}
+      \item B and F
+      \item A and F
+      \item H and F
+      \item A and C
+      \end{enumerate}
+\item In an 8085 microprocessor, the shift registers which store the result of an addition and the overflow bit are, respectively
+
+     \begin{enumerate}
+      \item MOV B,M 
+      \item PCHL
+      \item RNZ
+      \item SBI BEH
+     \end{enumerate}
+\item For 8085 microprocessor, following code executed
+\begin{verbatim}
+MVI A,05H
+MVI B,05H
+PTR:ADD B
+DCR B
+JNZ PTR
+ADI 03H
+HLT
+\end{verbatim}
+At the end of program,accumulator contains
+     \begin{enumerate}
+      \item 17H 
+      \item 20H
+      \item 23H
+      \item 05H
+    \end{enumerate}
+    \item An 8085 assembly language program is given below. Assume that the carry flag is initially unset.The content of the accumulator after the execution of the program is
+\begin{verbatim}
+MVI A,07H
+RLC
+MOV B,A
+RLC
+RLC
+ADD B
+\end{verbatim}
+
+\begin{enumerate} 
+      \item 8CH
+      \item 64H
+      \item 23H
+      \item 15H
+    \end{enumerate}
+ \item In an microprocessor, the service routine for a certain interrupt  starts from a fixed location of memory which cannot be externally set ,but the interrupt can be delayed or rejected .such interrupt is
+\begin{enumerate}
+      \item non-maskable  and non-vectored
+      \item maskable and non-vectored
+      \item non-maskable and vectored
+      \item maskable and vectored
+    \end{enumerate}
+\item The number of memory cycles required to execute the following 8085 instructions.\\
+I. LDA 3000H\\
+II. LXI D, FOF 1H\\
+would be  \\
+   \begin{enumerate}
+      \item 2 for I and 2 for II
+      \item 4 for I and 3 for II
+      \item 3 for I and 3 for II
+      \item 3 for I and 4 for II
+    \end{enumerate}
+\item The 8255 Programmable Peripheral Interface is used as described below.\\
+I. An A/D converter is interfaced to a microprocessor through an 8255. the
+conversion is initiated by a signal from the 8255 on Port C. A signal on Port C
+causes data to be strobed into Port A.\\
+II. Two computers exchange data using a pair of 8255s. Port A works as a bidirectional data port supported by appropriate handshaking signals.\\
+would be  \\
+The appropriate modes of operation of the 8255 for I and II would be\\
+    \begin{enumerate}
+      \item Mode 0 for I and Mode 1 for II
+      \item Mode 1 for I and Mode 0 for II
+      \item Mode 2 for I and Mode 0 for II
+      \item Mode 2 for I and Mode 1 for II
+    \end{enumerate}
+
+\item Consider the sequence of 8085 instructions given below.
+\begin{verbatim}
+LXI H, 9258
+MOV A, M
+CMA
+MOV M, A
+\end{verbatim}
+Which one of the following is performed by this sequence?  
+
+    \begin{enumerate}
+     \item contents of location 9258 are moved to the accumulator 
+     \item contents of location 9258 are compared with the contents of the accumulator
+     \item contents of location 8529 are complemented and stored in location 8529
+     \item contents of location 5892 are complemented and stored in location 5892
+    \end{enumerate}
+   
+    
+    \item In an 8085 microprocessor, the instruction CMP B has been executed while the
+content of the accumulator is less than that of register B. As a result?
+                       
+   \begin{enumerate}
+     \item Carry flag will be set but Zero flag will be reset 
+      \item Carry flag will be reset but Zero flag will be set
+      \item Both Carry flag and Zero flag will be reset
+      \item Both Carry flag and Zero flag will be set
+    \end{enumerate} 
+    
+     \item The number of hardware interrupts (which require an external signal to interrupt)
+present in an 8085 microprocessor are
+    \begin{enumerate}
+      \item 1
+      \item 5
+      \item 4
+      \item 13
+    \end{enumerate}
+     \item In the 8085 microprocessor, the RST6 instruction transfers the program
+execution to the following location
+                         
+   \begin{enumerate}
+      \item 30 H
+      \item 24 H
+      \item 48 H
+      \item 60 H
+    \end{enumerate} 
+\item An 8085 executes the following instructions.
+\begin{verbatim}
+2710 LXI H, 30A0H
+2713 DAD H
+2714 PCHL
+\end{verbatim}
+All addresses and constants are in Hex. Let PC be the contents of the program counter and HL be
+the contents of the HL register pair just after executing PCHL.\\
+Which of the following statements is correct?
+    \begin{enumerate}
+      \item PC=2715H HL=30A0H
+      \item PC=30A0H HL=2715H
+      \item PC=6140H HL=6140H
+      \item PC=6140H HL=2715H
+    \end{enumerate}
+    \item For a microprocessor system using I/O mapped I/O the following statement(s) is NOT true 
+    \begin{enumerate}
+      \item Memory space available is greater.
+      \item Not all data transfer instruction are available.
+      \item I/O and Memory address spaces are distinct.
+      \item I/O address space is greater.
+    \end{enumerate}
+    \item In an 8085 microprocessor system,the RST instruction will cause an interrupt
+   \begin{enumerate}
+      \item Only if an interrupt service routine is not being executed.
+      \item Only if a bit in the interrupt mask is made 0.
+      \item Only if interrupts have been enabled by an EI instruction.
+      \item None of the above. 
+    \end{enumerate}
+    \item A snapshot of the address, data and control buses of an 8085 microprocessor executing
+program is given below:
+\begin{displaymath}
+\begin{array}{|c|c|} \hline
+
+
+Address & 2020H  \\\hline
+Data & 24H  \\ \hline
+{\overline{M}} & Logic high    \\\hline
+{\overline{RD}} & Logic high  \\\hline
+{\overline{WR}} & Logic Low  \\\hline
+\end{array}
+\end{displaymath}
+
+The assembly language instruction being executed is\\
+      \begin{enumerate}
+      \item IN 24H
+      \item OUT 24H
+      \item IN 20H
+      \item OUT 20H
+    \end{enumerate}
+    \item An 8Kx8 bit RAM is interfaced to an 8085 microprocessor. In a fully decoded
+scheme, if the address of the last memory location of this RAM is 4FFFH, the
+address of the first memory location of the RAM will be 
+      \begin{enumerate}                  
+      \item 1000H
+      \item 2000H
+      \item 3000H
+      \item 4000H
+      \end{enumerate}
+\item The following is an assembly language program for 8085 microprocessors
+\begin{displaymath}
+\begin{array}{|c|c|c|} \hline
+
+
+Address & Instruction code & Mnemonic   \\\hline
+1000H & 3E06 & MVI A, 06H \\ \hline
+1002H & C6 70 & ADI 70H    \\\hline
+1004H & 32 07 10 & STA 1007H  \\\hline
+1007H & AF & XRA A \\\hline
+1008H & 76 & HLT \\\hline
+\end{array}
+\end{displaymath}
+When this program halts, the accumulator contains
+     \begin{enumerate}
+      \item 00H
+      \item 06H
+      \item 70H
+      \item 76H
+    \end{enumerate}    
+   
+                                   
+    \item A part of a program written for an 8085 microprocessor is shown below. When the program
+execution reaches LOOP2, the value of register C will be
+\begin{verbatim}
+SUB A
+MOV C, A
+LOOP1: INR A
+DAA
+JC LOOP2
+JNC LOOP1
+LOOP2: NOP
+\end{verbatim}
+
+    
+     \begin{enumerate}
+      \item 63H
+      \item 64H
+      \item 99H
+      \item 100H
+    \end{enumerate}
+    \item A $2k\times 8$ bit RAM is interfaced to an 8-bit microprocessor. If the address of the first memory
+location in the RAM is 0800H, the address of the last memory location will be             \begin{enumerate}
+      \item 1000H
+      \item 0FFFH
+      \item 4800H
+      \item 47FFH
+    \end{enumerate}
+    \item Find the correct match among the following pair in the context of an 8085 microprocessor :
+\begin{displaymath}
+\begin{array}{|c|c|} \hline
+
+(a) DAA & (e) Program control instruction    \\\hline
+(b) LXI & (f) Data movement Instruction      \\\hline
+(c) RST & (g) Interrupt instruction          \\\hline
+(d) JMP & (h) Arithmetic instruction         \\\hline
+\end{array}
+\end{displaymath}
+ \begin{enumerate}
+      \item a-e, b-f, c-g, d-h
+      \item a-h, b-g, c-f, d-e
+      \item a-h, b-f, c-g, d-e
+      \item a-f, b-h, c-g, d-e
+    \end{enumerate}
+    \item The subroutine SBX given below is executed by an 8085 processor. The value in
+the accumulator immediately after the execution of the subroutine will be:
+\begin{verbatim}
+SBX : MVI A,99H 
+ADI 11H
+MOV C,A
+RET
+\end{verbatim}
+     \begin{enumerate}
+      \item 00H
+      \item 11H
+      \item 99H
+      \item AAH
+    \end{enumerate}
+    \item In an 8085 processor, the main program calls the subroutine SUB1 given below. When the
+program returns to the main program after executing SUB1, the value in the accumulator is\\
+\begin{displaymath}
+\begin{array}{|c|c|} \hline
+
+Address & Opcode Mnemonics \\\hline
+2000 & 3E 00    \\\hline
+2002 & CD 05 20 \\\hline
+2005 & 3C       \\\hline
+2006 & C9       \\\hline
+\end{array}
+\end{displaymath}
+\begin{verbatim}
+SUB1:MVI A,00H 
+CALL SUB2
+SUB2: INR 
+RET
+\end{verbatim}
+    \begin{enumerate}
+      \item 00
+      \item 01
+      \item 03
+      \item 04
+    \end{enumerate}
+    \item Consider a system consisting of a microprocessor, memory, and peripheral devices connected by
+a common bus. During DMA data transfer, the microprocessor
+    \begin{enumerate}
+      \item only read from the bus.
+      \item only write to the bus.
+      \item both read from and writes to the bus.
+      \item neither read from nor writes to the bus.
+    \end{enumerate}
+    \item The following is an assembly language program for 8085 microprocessors:\\
+\begin{displaymath}
+\begin{array}{|c|c|c|} \hline
+
+Address & Instruction code & Mnemonic   \\\hline
+1000H & 3E06 & MVI A, 06H    \\\hline
+1002H& C6 70 & ADI 70II      \\\hline
+1004H & 32 07 10 & STA 1007H \\\hline
+1007H & AF & XRA             \\\hline
+1008H & 76 & HLT             \\\hline
+\end{array}
+\end{displaymath}
+When this program halts, the accumulator contains\\
+   
+    \begin{enumerate}
+      \item 00H
+      \item 70H
+      \item 06H
+      \item 76H
+    \end{enumerate}
+    \item A memory mapped I/O device has an address of 00F0H. Which of the following 8085
+instructions outputs the content of the accumulat or to the I/O device?
+    \begin{enumerate}
+      \item LXI H, 00F0H , MOV M, A
+      \item LXI H, 00F0H , OUT F0H
+      \item LXI H, 00F0H, OUT M
+      \item LXI H, 00F0H , MOV A, M
+    \end{enumerate}
+    \item An 8085 assembly language program is given as follows. The execution time of each instruction
+is given against the instruction in terms of T-state. 
+\begin{displaymath}
+\begin{array}{|c|c|} \hline
+
+ Instruction  & T-states   \\\hline
+ MVI B, 0AH & 7T           \\\hline
+ LOOP: MVIC, 05H & 7T      \\\hline
+ DCR C & 4T                \\\hline
+ DCR B & 4T                \\\hline
+ JNZ LOOP & 10T/7T         \\\hline
+\end{array}
+\end{displaymath}
+The execution time of the program in terms of T - states is\\
+
+ \begin{enumerate}
+      \item 247 T
+      \item 254 T
+      \item 250 T
+      \item 257 T
+    \end{enumerate}
+    \item The time period of a square wave in the audio frequency range is measured using an 8085
+microprocessor by feeding the square wave to one of the four interrupts, namely, RST 7.5, RST
+6.5, RST 5.5, or INT. The algorithm used starts a timer at the beginning of a time period, stops
+the timer at the beginning of the next time period and reads the timer values for time
+measurement. Which of the following interrupts should be selected for this application?\\
+     \begin{enumerate}
+      \item INTR
+      \item RST 6.5
+      \item RST 5.5
+      \item RST 7.5
+    \end{enumerate}
+    \item In an 8085 microprocessor, which one of the following is the correct sequence of the machine
+cycles for the execution of the DCR M instruction? 
+ \begin{enumerate}
+      \item op-code fetch. 
+      \item op-code fetch, memory read, memory write.
+      \item op-code fetch memory read.
+      \item op-code fetch memory write, memory write.
+    \end{enumerate} 
+    \item In an 8085 microprocessor the value of the stack pointer (SP) is 2010H and that of DE register pair is 1234H before the following code is executed. The value of the DE register pair after the
+following code is executed is \\
+\begin{verbatim}
+LXI H, 0000H
+PUSH H
+PUSH H
+POP B
+DAD SP
+XCHG
+\end{verbatim}
+     \begin{enumerate}
+      \item 200E H
+      \item 2010 H
+      \item 200C H
+      \item 1232 H
+    \end{enumerate}
+    \item The vectored address corresponding to the software interrupt command RST7 in 8085
+microprocessor is 
+    \begin{enumerate}
+      \item 0017H 
+      \item 0038H
+      \item 0700H
+      \item 0027H
+    \end{enumerate}
+    \item The following 8085 instructions are executed sequentially.\\
+\begin{verbatim}
+PROG: XRA A
+      MOV L, A
+      MOV H, L
+      INX H
+      DAD H
+\end{verbatim}
+After execution, the content of HL register pair is\\
+    \begin{enumerate}
+      \item 0000H 
+      \item 0001H
+      \item 0002H
+      \item 0101H
+    \end{enumerate}
+    \item In an 8085 system containing 8KB of ROM and 8KB of RAM , the ROM is selected when A 15
+is 0 and the RAM is selected when A15 is 1. A13 and A14 are unused. The CPU executes the
+following program\\
+\begin{verbatim}
+MV1 A,00H
+STA 8080H
+DCR A
+STA C080H
+RET
+\end{verbatim}
+The content of memory location 8080 H after the execution of the RETURN instruction is\\ 
+    \begin{enumerate}
+      \item FFH
+      \item FEH
+      \item 00H
+      \item 01H
+     \end{enumerate}
+     \item In an INTEL 8085 microprocessor the ADDRESS-DATA bus and the DATA bus are\\
+       \begin{enumerate}
+      \item Non multiplexed
+      \item Duplicated
+      \item  Multiplexed 
+      \item Same as CONTROL bus
+    \end{enumerate}
+    \item A minimal microcomputer system is constructed using INTEL 8085 microprocessor, an
+8156 RAM and an 8355 ROM. The chip enable CE of 8156 and chip enable CE of 8355 are
+connected to the address line. A12 of 8085. The address of port A of the 8156 chip is\\
+     \begin{enumerate}
+      \item 21H 
+      \item 11H
+      \item 12H
+      \item 20H
+    \end{enumerate}
+    \item In a microprocessor with 16 address and 12 data lines, the maximum number of opcodes is\\
+    \begin{enumerate}
+      \item $2^{6}$  
+      \item $2^{12}$  
+      \item $2^{8}$ 
+      \item $2^{16}$
+    \end{enumerate}
+    \item An m-bit microprocessor has an m-bit
+     \begin{enumerate}
+      \item flag register 
+      \item data counter
+      \item instruction register
+      \item  program counter
+    \end{enumerate}
+    \item In 8085 microprocessor, CY flag may be set by the instruction\\
+     \begin{enumerate}
+      \item SUB 
+      \item CMA
+      \item INX
+      \item ANA
+    \end{enumerate}
+    \item Microprocessor 8085 regains control of the bus\\
+    \begin{enumerate}
+      \item immediately after HOLD goes low. 
+      \item immediately after HOLD goes high.
+      \item after half-clock cycle after HLDA goes low.
+      \item after half-clock cycle after HLDA goes high.
+    \end{enumerate}
+    \item  If the following program is executed in a microprocessor, the number of
+instruction cycles it will take from START TO HALT is\\
+\begin{verbatim}
+START MV1A, 14 H 
+SHIFT RLC        
+JNZ SHIFT        
+HALT
+\end{verbatim}
+     \begin{enumerate}
+      \item 4 
+      \item 8
+      \item 13
+      \item 16
+    \end{enumerate}
+    \item Which one of the following is not a vectored interrupt?\\
+     \begin{enumerate}
+      \item TRAP 
+      \item RST7.5
+      \item INTR 
+      \item RST3
+    \end{enumerate}
+    \item The following program is written for an 8085 microprocessor to add two bytes
+located at memory addresses 1FFE and 1FFF\\
+\begin{verbatim}
+LXI H, 1FFE
+MOV B, M
+INR L
+MOV A, M
+ADD B
+INR L
+MOV M, A
+XOR A
+\end{verbatim}
+On completion of the execution of the program, the result of addition is found\\ 
+     \begin{enumerate}
+      \item in the register A
+      \item at the memory address 1000
+      \item at the memory address 1F00
+      \item at the memory address 2000
+    \end{enumerate}
+      \item In an 8085 microprocessor ,the following program executed \\
+\begin{displaymath}
+\begin{array}{|c|c|} \hline
+Address & Instruction code  \\\hline
+2000H & XRA A      \\\hline
+2001H & MVIB,04H     \\\hline
+2003H & MVI A,03H     \\\hline
+2005H & RAR        \\\hline
+2006H & DCR B        \\\hline
+2007H & JNZ 2005        \\\hline
+200AH & HLT        \\\hline
+\end{array}
+\end{displaymath}
+At the end of program ,register A contains\\
+      \begin{enumerate}
+      \item 60H 
+      \item 30H
+      \item 06H
+      \item 03H
+    \end{enumerate}
+    \item In an 8085 microprocessor, the contents of the Accumulator, after the following instructions are executed will become \\
+\begin{verbatim}
+XRA A 
+MVIB F0H
+SUB B
+\end{verbatim}
+     \begin{enumerate}
+      \item 01H
+      \item F0H
+      \item 10H
+      \item 0FH
+    \end{enumerate}
+    \item An input device is interfaced with Intel 8085A microprocessor as memory mapped I/O. The
+address of the device is 2500H. In order to input data from the device to accumulator, the
+sequence of instructions will be\\
+    \begin{enumerate}
+      \item LXI H, 2500H ;MOV A, M 
+      \item LHLD 2500H;MOV A, M
+      \item LXI H, 2500H ;MOV M, A
+      \item LHLD 2500H;MOV M, A
+    \end{enumerate}
+    \item The contents (in Hexadecimal) of some of the memory locations in an 8085A based system are
+given below\\
+\begin{displaymath}
+\begin{array}{|c|c|} \hline
+Address & Contents  \\\hline
+....  & ....      \\\hline
+26FE  &  00       \\\hline
+26FF & 01         \\\hline
+2700 & 02         \\\hline
+2701 & 03         \\\hline
+2702 & 04         \\\hline
+....  & ....      \\\hline
+\end{array}
+\end{displaymath}
+The contents of stack pointer (SP), Program counter(PC) and (H, L) are 2700H, 2100H and
+0000H respectively. When the following sequence of instructions are executed,\\
+\begin{verbatim}
+2100 H: DAD SP
+2101 H: PCHL
+\end{verbatim}
+the contents of (SP) and (PC) at the end of execution will be\\
+     \begin{enumerate}
+      \item (PC) = 2102H, (SP) = 2700H 
+      \item (PC) = 2800H, (SP) = 26 FE H 
+      \item (PC) = 2700H, (SP) = 2700H 
+      \item (PC) = 2A02H, (SP)= 2702H
+    \end{enumerate}
+    \item Which one of the following statements regarding the INT (interrupt) and the BRQ (but request)
+pins in a CPU is true?\\
+
+
+%
+                 
+         \begin{enumerate}
+         \item The BRQ pin is sampled after every instruction cycle, but the INT is sampled after every
+machine cycle.
+         \item Both INT and BRQ are sampled after every machine cycle.
+         \item The INT pin is sampled after every instruction cycle, but the BRQ is sampled after every
+machine cycle.
+         \item Both INT and BRQ are sampled after every instruction cycle.
+         \end{enumerate}
+              
+%
+
+\item If the operating frequency of 8086 microprocessor is 10MHz and ,if for the given instruction ,the machine cycle consist of 4 T states ,what will be the time taken by the machine cycle to complete execution of same instruction when three waits states are inserted ?\\  
+%
+
+\begin{enumerate}
+\item 0.4$\mu$s
+\item 0.7$\mu$s
+\item 70$\mu$s
+\item 7$\mu$s
+\end{enumerate}
+\item consider the following loop\\
+\begin{verbatim}
+   MOV CX, 8000H
+L1:DEC CX
+   JNX L1
+\end{verbatim}
+The processor is running at $14.7456/3$ MHz and DEC CX require two clock cycles and JNZ requires 16 clock cycles .The total time taken is nearly \\
+\begin{enumerate}
+\item 0.01$\mu$s
+\item 0.12$\mu$s
+\item 3.66$\mu$s
+\item 4.19$\mu$s
+\end{enumerate}
+\item An Addressing mode in which the location of the data is obtained within the mnemonics,is known as 
+  \begin{enumerate}
+\item Immediately addressing mode.
+\item Implied addressing mode.
+\item Register addressing mode.
+\item Direct addressing mode.
+\end{enumerate}                 
+\item In microprocessor, WAIT states are used to 
+  \begin{enumerate}
+\item Make the processor WAIT during a DMA operation.
+\item Make the processor WAIT during an Interrupt operation .
+\item Make the processor WAIT during a Power shut Down.
+\item Direct addressing mode.
+\end{enumerate}              
+
+ \end{enumerate}
+  
+\end{document}
