@@ -101,7 +101,7 @@ int main(void)
  while(1)
  {
  LCD_Clear();
- LCD_Integer(7);  // show counter 
+ LCD_Integer(8);  // show counter 
 _delay_ms(600);     // set animation speed
 }
 }
